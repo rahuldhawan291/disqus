@@ -1,0 +1,49 @@
+version: '3'
+services:
+  web:
+    build: .
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ./wait-for-it.sh -c 'nc -z postgredb 5432'
+        python manage.py migrate --no-input
+        python manage.py makemigrations disqus --no-input
+        gunicorn disqus.wsgi -b 0.0.0.0:8000
+    volumes:
+      - .:/disqus
+    restart: always
+    expose:
+      - "8000"
+    links:
+      - postgredb:postgredb
+    depends_on:
+      - postgredb
+    environment:
+      - DJANGO_SETTINGS_MODULE=disqus.settings.local
+      - DATABASE_URL=postgres://user:password@postgredb:5432/disqus
+      - DJANGO_SECRET_KEY=ljwwdojoqdjoqojwjqdoqwodq
+      - DEBUG=True
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - web:web
+    depends_on:
+      - web
+    volumes:
+      - ./deployment/nginx:/etc/nginx/conf.d
+      - ./deployment/ssl:/etc/ssl
+      - ./disqus/staticfiles:/static
+  postgredb:
+    restart: always
+    image: postgres:latest
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=disqus

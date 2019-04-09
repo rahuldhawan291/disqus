@@ -1,0 +1,150 @@
+ERROR 2019-04-09 01:03:02,759 django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 34, in validate_number
+    number = int(number)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/disqus/discussions/views.py", line 60, in post
+    posts_s = paginator.page(page)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 36, in validate_number
+    raise PageNotAnInteger('That page number is not an integer')
+django.core.paginator.PageNotAnInteger: That page number is not an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: posts.cat
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/disqus/discussions/views.py", line 62, in post
+    posts_s = paginator.page(1)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 39, in validate_number
+    if number > self.num_pages:
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 84, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 72, in count
+    return self.object_list.count()
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/query.py", line 369, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/query.py", line 476, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/query.py", line 457, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 835, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: posts.cat
+ERROR 2019-04-09 01:03:02,867 django.server "POST / HTTP/1.1" 500 175509
+ERROR 2019-04-09 01:03:56,044 django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 34, in validate_number
+    number = int(number)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/disqus/discussions/views.py", line 60, in post
+    posts_s = paginator.page(page)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 36, in validate_number
+    raise PageNotAnInteger('That page number is not an integer')
+django.core.paginator.PageNotAnInteger: That page number is not an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: posts.cat
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/300047924/workspaces/hashedin/disqus/disqus/discussions/views.py", line 62, in post
+    posts_s = paginator.page(1)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 39, in validate_number
+    if number > self.num_pages:
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 84, in num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/core/paginator.py", line 72, in count
+    return self.object_list.count()
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/query.py", line 369, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/query.py", line 476, in get_count
+    number = obj.get_aggregation(using, ['__count'])['__count']
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/query.py", line 457, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 835, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/300047924/workspaces/hashedin/disqus/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such column: posts.cat
+ERROR 2019-04-09 01:03:56,138 django.server "POST / HTTP/1.1" 500 175507
